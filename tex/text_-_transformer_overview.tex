@@ -1,0 +1,51 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+\begin{document}
+
+\begin{tikzpicture}[ampersand replacement=\&]
+    \tikzset{node distance = .3cm and 2cm}
+
+    \matrix (input) [matrix of nodes,
+                     column sep=1.5em,
+                     minimum width=2em,]
+            { \hvector{airforceblue} \&
+              \hvector{airforceblue} \&
+              \hvector{airforceblue} \&
+              \hvector{airforceblue} \&
+              \hvector{airforceblue} \\
+              La \& musique \& creuse \& le \& ciel \\
+            };
+
+    \node (transformer) [above=of input, minimum height=3em, minimum width=12cm, draw=apricot, rounded corners, line width=2pt, fill=apricot!50] (transformer) {\makecell{Transformer Language Model}};
+
+    \matrix (output) [matrix of nodes,
+                      column sep=1.5em,
+                      above=of transformer,
+                      minimum width=2em,]
+            { \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \\
+            };
+
+    \incoming{output-1-1.south}{transformer.north}
+    \incoming{output-1-2.south}{transformer.north}
+    \incoming{output-1-3.south}{transformer.north}
+    \incoming{output-1-4.south}{transformer.north}
+    \incoming{output-1-5.south}{transformer.north}
+
+    \outgoing{input-1-1.north}{transformer.south}
+    \outgoing{input-1-2.north}{transformer.south}
+    \outgoing{input-1-3.north}{transformer.south}
+    \outgoing{input-1-4.north}{transformer.south}
+    \outgoing{input-1-5.north}{transformer.south}
+
+    \node [right=of input-1-5] {\makecell{représentation \\ initiale}};
+    \node [right=of output-1-5] {\makecell{représentation \\ contextualisée}};
+
+\end{tikzpicture}
+
+\end{document}
