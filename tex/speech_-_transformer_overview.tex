@@ -1,13 +1,6 @@
 \documentclass[crop,tikz]{standalone}
 
-\usepackage{makecell}
-\usetikzlibrary{positioning}
-
-\newcommand{\vvectorSmall}[1]{\tikz{\draw[#1,step=.5em,fill=#1!50] (0,0)  grid (.5em,1.5em) rectangle (0, 0);}}
-\newcommand{\vvector}[1]{\tikz{\draw[#1,step=1em,fill=#1!50] (0,0)  grid (1em,4em) rectangle (0, 0);}}
-
-\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
-\definecolor{alizarin}{rgb}{0.82, 0.1, 0.26}
+\input{tex/common}
 
 \begin{document}
 
