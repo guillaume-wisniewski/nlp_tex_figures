@@ -1,6 +1,6 @@
 for fn in `ls tex/*.tex`
 do
-    echo $fn
+    echo "== generating $fn =="
     xelatex $fn
 done
 
