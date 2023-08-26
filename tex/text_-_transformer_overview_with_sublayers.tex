@@ -1,0 +1,83 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+\begin{document}
+
+\begin{tikzpicture}[ampersand replacement=\&]
+    \tikzset{node distance = .3cm and 2cm}
+    
+    \node[rounded corners, draw=cambridgeblue, fill=cambridgeblue!50, line width=1pt, minimum height=1cm, minimum width=12cm] (ff) {Feed Forward};
+    
+    \matrix (M) [matrix of nodes,
+    row sep=3em,
+    column sep=1.5em,
+    below=of ff,
+    minimum width=2em,]
+    { \hvector{celadon} \&
+      \hvector{celadon} \&
+      \hvector{celadon} \&
+      \hvector{celadon} \&
+      \hvector{celadon} \\
+    };
+    
+    \node[rounded corners, draw=cambridgeblue, fill=cambridgeblue!50, line width=1pt, minimum height=1cm, minimum width=12cm, below=of M] (selfattention) {Self-Attention};
+    
+    \outgoing{M-1-1.north}{ff.south}
+    \outgoing{M-1-2.north}{ff.south}
+    \outgoing{M-1-3.north}{ff.south}
+    \outgoing{M-1-4.north}{ff.south}
+    \outgoing{M-1-5.north}{ff.south}
+
+
+    \incoming{M-1-1.south}{selfattention.north}
+    \incoming{M-1-2.south}{selfattention.north}
+    \incoming{M-1-3.south}{selfattention.north}
+    \incoming{M-1-4.south}{selfattention.north}
+    \incoming{M-1-5.south}{selfattention.north}
+    
+    \matrix (input) [matrix of nodes,
+                     column sep=1.5em,
+                     below=of selfattention,
+                     minimum width=2em,]
+    { \hvector{airforceblue} \&
+      \hvector{airforceblue} \&
+      \hvector{airforceblue} \&
+      \hvector{airforceblue} \&
+      \hvector{airforceblue} \\
+      La \& musique \& creuse \& le \& ciel \\
+    };
+
+    \outgoing{input-1-1.north}{selfattention.south}
+    \outgoing{input-1-2.north}{selfattention.south}
+    \outgoing{input-1-3.north}{selfattention.south}
+    \outgoing{input-1-4.north}{selfattention.south}
+    \outgoing{input-1-5.north}{selfattention.south}
+
+    \matrix (output) [matrix of nodes,
+                     column sep=1.5em,
+                     above=of ff,
+                     minimum width=2em,]
+    { \hvector{celadon} \&
+      \hvector{celadon} \&
+      \hvector{celadon} \&
+      \hvector{celadon} \&
+      \hvector{celadon} \\
+    };
+
+    \incoming{output-1-1.south}{ff.north}
+    \incoming{output-1-2.south}{ff.north}
+    \incoming{output-1-3.south}{ff.north}
+    \incoming{output-1-4.south}{ff.north}
+    \incoming{output-1-5.south}{ff.north}
+
+    \node[draw=alizarin, rounded corners, line width=1pt, fit=(ff) (selfattention), inner xsep=1.5em, inner ysep=1em] (box) {};
+
+    \node[rotate=90, above] at (box.west) {encoder layer};
+    
+    \node [right=of input-1-5] {\makecell{représentation \\ initiale}};
+    \node [right=of output-1-5] {\makecell{représentation \\ contextualisée}};
+
+\end{tikzpicture}
+
+\end{document}
