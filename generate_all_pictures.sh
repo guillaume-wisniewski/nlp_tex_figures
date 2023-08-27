@@ -1,7 +1,9 @@
 for fn in `ls tex/*.tex`
 do
-    echo "== generating $fn =="
-    xelatex $fn
+    if [ $fn != "tex/common.tex" ]; then
+        echo "== generating $fn =="
+        xelatex $fn
+    fi
 done
 
 mv *.pdf output
