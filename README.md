@@ -4,4 +4,4 @@ Here are the illustration contained in the repository:
 
 - principle of transformer applied to speech data:
 
-![](output/transformer_overview_speech.png)
+![](output/speech_-_transformer_overview.pdf)
