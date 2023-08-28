@@ -17,6 +17,8 @@
 \usetikzlibrary{matrix}
 \usetikzlibrary{fit}
 \usetikzlibrary{calc,decorations.pathmorphing,patterns}
+\usetikzlibrary{decorations.pathreplacing}
+
 
 \newcommand{\vvector}[1]{\tikz{\draw[#1,step=1em,fill=#1!50] (0,0)  grid (1em,4em) rectangle (0, 0);}}
 \newcommand{\hvector}[1]{\tikz{\draw[#1,step=1em,fill=#1!50] (0,0)  grid (4em,1em) rectangle (0, 0);}}
@@ -27,6 +29,12 @@
 \newdimen\XXCoord
 \newdimen\YYCoord
 
+\newdimen\empty
+\newdimen\fromX
+\newdimen\fromY
+\newdimen\toX
+\newdimen\toY
+
 \newcommand{\outgoing}[2]{
   \path (#1); \pgfgetlastxy{\XCoord}{\YCoord};
   \path (#2); \pgfgetlastxy{\XXCoord}{\YYCoord};
@@ -36,4 +44,19 @@
   \path (#1); \pgfgetlastxy{\XCoord}{\YCoord};
   \path (#2); \pgfgetlastxy{\XXCoord}{\YYCoord};
   \draw[->, line width=1pt] (\XCoord, \YYCoord) -- (\XCoord, \YCoord);
+}%
+% horizontal arrow: (#1.x, #3.y) -- (#2.x, #3.y)
+\newcommand{\horizontalArrow}[3]{
+  \path (#1); \pgfgetlastxy{\fromX}{\empty};
+  \path (#2); \pgfgetlastxy{\toX}{\empty};
+  \path (#3); \pgfgetlastxy{\empty}{\fromY};
+  \draw[->, line width=1pt] (\fromX, \fromY) -- (\toX, \fromY);
+}%
+% vertical braces: (#3.x, #1.y) -- (#3.x, #2.y)
+\newcommand{\verticalBraces}[4]{
+  \path (#1); \pgfgetlastxy{\empty}{\fromY};
+  \path (#2); \pgfgetlastxy{\empty}{\toY};
+  \path (#3); \pgfgetlastxy{\fromX}{\empty};
+  % XXX the values for positionning the node for #4 have been choosen for the NMT example. must be checked
+  \draw [decorate,decoration={brace,amplitude=3pt,raise=4pt},yshift=0pt] (\fromX, \fromY) -- (\fromX, \toY) node [midway, anchor=west, xshift=.2cm] {#4};
 }%
