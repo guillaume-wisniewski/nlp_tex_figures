@@ -1,0 +1,79 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+\begin{document}
+
+\begin{tikzpicture}[ampersand replacement=\&]
+    \tikzset{node distance = .3cm and 2cm}
+
+    \matrix (input) [matrix of nodes,
+                     column sep=1.5em,
+                     minimum width=2em,]
+            { \hvector{airforceblue} \&
+              \hvector{airforceblue} \&
+              \hvector{airforceblue} \&
+              \hvector{airforceblue} \&
+              \hvector{airforceblue} \\
+              La \& musique \& creuse \& le \& ciel \\
+            };
+
+    \node [above=of input, minimum height=3em, minimum width=12cm, draw=apricot, rounded corners, line width=2pt, fill=apricot!50] (encoder) {\makecell{Encodeur}};
+
+    \matrix (output) [matrix of nodes,
+                      column sep=1.5em,
+                      above=of encoder,
+                      minimum width=2em,]
+            { \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \\
+            };
+
+    \node [above=of output, minimum height=3em, minimum width=12cm, draw=apricot, rounded corners, line width=2pt, fill=apricot!50] (decoder) {\makecell{Décodeur}};
+
+    \node [above=2cm of output-1-1] (tgt1) {\hvector{celadon}};
+    \node [above=2cm of output-1-2] (tgt2) {\hvector{celadon}};
+    \node [above=2cm of output-1-3] (tgt3) {\Large ?};
+    \node [above=of tgt1] {the};
+    \node [above=of tgt2] {music};
+
+    \node [right=of decoder.north east] (tgtContext1) {\hvector{celadon} the};
+    \node [right=of decoder.east] (tgtContext2) {\hvector{celadon} music};
+
+    \horizontalArrow{tgtContext1.west}{decoder.east}{tgtContext1}
+    \horizontalArrow{tgtContext2.west}{decoder.east}{tgtContext2}
+
+    \verticalBraces{tgtContext1.north east}{tgtContext2.south east}{tgtContext2.south east}{\makecell{contexte \\ cible}}
+
+    \incoming{output-1-1.south}{encoder.north}
+    \incoming{output-1-2.south}{encoder.north}
+    \incoming{output-1-3.south}{encoder.north}
+    \incoming{output-1-4.south}{encoder.north}
+    \incoming{output-1-5.south}{encoder.north}
+
+    \outgoing{input-1-1.north}{encoder.south}
+    \outgoing{input-1-2.north}{encoder.south}
+    \outgoing{input-1-3.north}{encoder.south}
+    \outgoing{input-1-4.north}{encoder.south}
+    \outgoing{input-1-5.north}{encoder.south}
+
+    \outgoing{output-1-1.north}{decoder.south}
+    \outgoing{output-1-2.north}{decoder.south}
+    \outgoing{output-1-3.north}{decoder.south}
+    \outgoing{output-1-4.north}{decoder.south}
+    \outgoing{output-1-5.north}{decoder.south}
+
+    \incoming{tgt1.south}{decoder.north}
+    \incoming{tgt2.south}{decoder.north}
+    \incoming{tgt3.south}{decoder.north}
+
+    \node [left=of output-1-1] {\makecell{contexte \\ source}};
+    \node [left=of input-2-1] {\makecell{phrase source}};
+    \node [left=of tgt1] {\makecell{phrase cible}};
+
+
+\end{tikzpicture}
+
+\end{document}
