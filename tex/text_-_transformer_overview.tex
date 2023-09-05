@@ -2,6 +2,15 @@
 
 \input{tex/common}
 
+% French 
+%\newcommand{\initial}{représentation \\ initiale}
+%\newcommand{\final}{représentation \\ contextualisée}
+
+% English
+\newcommand{\initial}{initial \\ representation}
+\newcommand{\final}{contextualized \\ representation}
+
+
 \begin{document}
 
 \begin{tikzpicture}[ampersand replacement=\&]
@@ -43,8 +52,8 @@
     \outgoing{input-1-4.north}{transformer.south}
     \outgoing{input-1-5.north}{transformer.south}
 
-    \node [right=of input-1-5] {\makecell{représentation \\ initiale}};
-    \node [right=of output-1-5] {\makecell{représentation \\ contextualisée}};
+    \node [right=of input-1-5] {\makecell{\initial}};
+    \node [right=of output-1-5] {\makecell{\final}};
 
 \end{tikzpicture}
 
