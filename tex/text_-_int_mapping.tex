@@ -1,0 +1,52 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+% French 
+%\newcommand{\initial}{représentation \\ initiale}
+%\newcommand{\final}{représentation \\ contextualisée}
+
+% English
+
+\newsavebox{\voc}
+\sbox{\voc}{
+  \begin{tabular}{|ll l ll|}
+    \hline
+    \multicolumn{5}{|c|}{\textbf{Vocabulaire}} \\
+    \hline
+    , & 1       && Rodrigue & 6 \\
+    ? & 2       && dit      & 7  \\
+    Chimène & 3 && cru      & 8  \\
+    l'  & 4     && eût      & 9  \\
+    qui & 5     &&  \\ 
+    \hline
+  \end{tabular}
+}
+
+\begin{document}
+
+  \begin{tikzpicture}[ampersand replacement=\&]
+    \matrix (M) [matrix of nodes,
+                 /tikz/every even row/.style={font=\footnotesize\bfseries},
+                 row sep=1em,
+                 column sep=.5em,]
+    {
+      Rodrigue \& , \& qui    \& l'    \& eût \& cru \& ?  \\
+      6        \& 1 \& 5      \& 4     \& 9   \& 8   \& 2  \\
+      Chimène  \& , \& qui    \& l'    \& eût \& dit \& ?  \\
+      3        \& 1 \& 5      \& 4     \& 9   \& 7   \& 2 \\
+    };
+
+    \node (what) [right=of M] {\usebox{\voc}};\\
+
+    \foreach \x in {1,2,3,4,5,6,7} {
+      \draw[->] (M-1-\x) -- (M-2-\x);
+    }
+
+    \foreach \x in {1,2,3,4,5,6,7} {
+      \draw[->] (M-3-\x) -- (M-4-\x);
+    }
+
+  \end{tikzpicture}
+
+\end{document}
