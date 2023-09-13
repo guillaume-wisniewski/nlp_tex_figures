@@ -1,0 +1,34 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+% French 
+%\newcommand{\initial}{représentation \\ initiale}
+%\newcommand{\final}{représentation \\ contextualisée}
+
+% English
+
+\begin{document}
+
+  \begin{tikzpicture}[ampersand replacement=\&]
+    \matrix (M) [matrix of nodes,
+                 row sep=1em,
+                 column sep=.5em,]
+    {
+                \&           \&    \& ?  \&    \& l' \&    \& Rodrigue \& \& cru \\
+      Chimène = \& {\Large(} \& 0, \& 0, \& |[fill=amethyst!50]|1, \& 0, \& 0, \& 0, \& 0, \& 0, \& 0 \& {\Large)} \\
+                \&           \& ,  \&    \& \textcolor{amethyst}{Chimène} \& \& qui \& \& dit \& \& eût \\
+    };
+
+    \foreach \x in {4,6,8} {
+      \draw[->] (M-1-\x) -- (M-2-\x);
+    }
+
+    \foreach \x in {3,5,7,9} {
+      \draw[->] (M-3-\x) -- (M-2-\x);
+    }
+
+    \draw[->, amethyst] (M-3-5) -- (M-2-5);
+  \end{tikzpicture}
+
+\end{document}
