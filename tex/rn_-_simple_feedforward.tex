@@ -8,16 +8,23 @@
 
         \node[draw=airforceblue, fill=airforceblue!50, minimum width=.5cm, minimum height=6cm] (input) at (0cm,0cm) {};
 
-        \node[draw=asparagus, fill=asparagus!50, minimum width=.5cm, minimum height=3cm] (scores) at (8cm,0cm) {};
+        \node[draw=apricot, fill=apricot!50, minimum width=.5cm, minimum height=8cm] (hidden) at (8cm,0cm) {};
 
-        \draw[airforceblue] (input.north east) -- (scores.north west);
-        \draw[airforceblue] (input.south east) -- (scores.south west);
+        \node[draw=asparagus, fill=asparagus!50, minimum width=.5cm, minimum height=3cm] (scores) at (16cm,0cm) {};
 
-        \node at (4cm, 0cm) {$\textrm{ReLU}\left(\mathbf{x} \cdot \mathbf{M}\right)$};
+        \node at (4cm, 0cm) {$\textrm{ReLU}\left(\mathbf{x} \cdot \mathbf{M}^{\textrm{proj}}\right)$};
+        \node at (12cm, 0cm) {$\textrm{ReLU}\left(\mathbf{x} \cdot \mathbf{M}^{\textrm{score}}\right)$};
 
-        \node at (8cm, -4cm) {\makecell{vecteur de scores \\ (dimension $k$)}};
-        \node at (4cm, -4cm) {\makecell{matrice de paramètres \\ (dimension $k \times d$)}};
-        \node at (0cm, -4cm) {\makecell{observation $\mathbf{x}$ \\ (dimension $d$)}};
+        \draw[airforceblue] (input.north east) -- (hidden.north west);
+        \draw[airforceblue] (input.south east) -- (hidden.south west);
+        \draw[airforceblue] (hidden.north east) -- (scores.north west);
+        \draw[airforceblue] (hidden.south east) -- (scores.south west);
+
+        \node at (16cm, -5cm) {\makecell{vecteur de scores \\ (dimension $k$)}};
+        \node at (12cm, -5cm) {\makecell{matrice de paramètres \\ (dimension $h \times k$)}};
+        \node at ( 8cm, -5cm) {\makecell{représentation cachée $\mathbf{h}$ \\ (dimension $h$)}};
+        \node at ( 4cm, -5cm) {\makecell{matrice de paramètres \\ (dimension $n \times h$)}};
+        \node at ( 0cm, -5cm) {\makecell{observation $\mathbf{x}$ \\ (dimension $n$)}};
 
     \end{tikzpicture}
 

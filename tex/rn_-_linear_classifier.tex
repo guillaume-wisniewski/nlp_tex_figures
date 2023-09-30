@@ -1,0 +1,24 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+\begin{document}
+
+    \begin{tikzpicture}
+
+        \node[draw=airforceblue, fill=airforceblue!50, minimum width=.5cm, minimum height=6cm] (input) at (0cm,0cm) {};
+
+        \node[draw=asparagus, fill=asparagus!50, minimum width=.5cm, minimum height=3cm] (scores) at (8cm,0cm) {};
+
+        \draw[airforceblue] (input.north east) -- (scores.north west);
+        \draw[airforceblue] (input.south east) -- (scores.south west);
+
+        \node at (4cm, 0cm) {$\mathbf{x} \cdot \mathbf{M}$};
+
+        \node at (8cm, -4cm) {\makecell{vecteur de scores \\ (dimension $k$)}};
+        \node at (4cm, -4cm) {\makecell{matrice de paramètres \\ (dimension $k \times d$)}};
+        \node at (0cm, -4cm) {\makecell{observation $\mathbf{x}$ \\ (dimension $d$)}};
+
+    \end{tikzpicture}
+
+\end{document}
