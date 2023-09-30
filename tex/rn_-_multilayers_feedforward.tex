@@ -1,0 +1,45 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+\begin{document}
+
+    \begin{tikzpicture}
+
+        \def\xdist{4cm}
+
+        \node[draw=airforceblue, fill=airforceblue!50, minimum width=.5cm, minimum height=6cm] (input) at (0cm,0cm) {};
+
+        \node[draw=apricot, fill=apricot!50, minimum width=.5cm, minimum height=4cm] (hidden1) at (\xdist, 0cm) {};
+        \node[draw=apricot, fill=apricot!50, minimum width=.5cm, minimum height=6cm] (hidden2) at (\xdist * 2, 0cm) {};
+        \node[draw=apricot, fill=apricot!50, minimum width=.5cm, minimum height=4cm] (hidden3) at (\xdist * 3, 0cm) {};
+
+        \node[draw=asparagus, fill=asparagus!50, minimum width=.5cm, minimum height=2cm] (scores) at (\xdist * 4, 0cm) {};
+
+        \node at (\xdist * 0.5, 0cm) {$\textrm{ReLU}\left(\mathbf{x} \cdot \mathbf{M}^{\textrm{proj, 1}}\right)$};
+        \node at (\xdist * 1.5, 0cm) {$\textrm{ReLU}\left(\mathbf{x} \cdot \mathbf{M}^{\textrm{proj, 2}}\right)$};
+        \node at (\xdist * 2.5, 0cm) {$\textrm{ReLU}\left(\mathbf{x} \cdot \mathbf{M}^{\textrm{proj, 3}}\right)$};
+        \node at (\xdist * 3.5, 0cm) {$\textrm{ReLU}\left(\mathbf{x} \cdot \mathbf{M}^{\textrm{score}}\right)$};
+
+        \draw[airforceblue] (input.north east) -- (hidden1.north west);
+        \draw[airforceblue] (input.south east) -- (hidden1.south west);
+
+        \draw[airforceblue] (hidden1.north east) -- (hidden2.north west);
+        \draw[airforceblue] (hidden1.south east) -- (hidden2.south west);
+
+        \draw[airforceblue] (hidden2.north east) -- (hidden3.north west);
+        \draw[airforceblue] (hidden2.south east) -- (hidden3.south west);
+
+        \draw[airforceblue] (hidden3.north east) -- (scores.north west);
+        \draw[airforceblue] (hidden3.south east) -- (scores.south west);
+
+        \node at (\xdist,     -4cm) {\makecell{1$^{\textrm{ère}}$ représentation\\ cachée}};
+        \node at (\xdist * 2, -4cm) {\makecell{2$^{\textrm{ème}}$ représentation\\ cachée}};
+        \node at (\xdist * 3, -4cm) {\makecell{3$^{\textrm{ème}}$ représentation\\ cachée}};
+
+        \node at (\xdist * 4, -4cm) {\makecell{vecteur de scores}};
+        \node at ( 0cm, -4cm) {\makecell{observation $\mathbf{x}$}};
+
+    \end{tikzpicture}
+
+\end{document}
