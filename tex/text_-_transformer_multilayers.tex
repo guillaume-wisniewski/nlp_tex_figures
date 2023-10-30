@@ -1,0 +1,33 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+% French 
+%\newcommand{\initial}{représentation \\ initiale}
+%\newcommand{\final}{représentation \\ contextualisée}
+
+% English
+\newcommand{\initial}{initial \\ representation}
+\newcommand{\final}{contextualized \\ representation}
+
+
+\begin{document}
+
+\begin{tikzpicture}
+  \tikzset{node distance = .5cm and 2cm}
+
+  \node[draw, rounded corners, minimum width=.8\columnwidth, fill=alizarin!50] (e1) {encoder};
+  \node[draw, rounded corners, minimum width=.8\columnwidth, below=of e1, fill=alizarin!50] (e2) {encoder};
+  \node[draw, rounded corners, minimum width=.8\columnwidth, below=of e2, fill=alizarin!50] (e3) {encoder};
+  \node[draw, rounded corners, minimum width=.8\columnwidth, below=of e3, fill=alizarin!50] (e4) {encoder};
+  \node[draw, rounded corners, minimum width=.8\columnwidth, below=of e4, fill=alizarin!50] (e5) {encoder};
+  \node[draw, rounded corners, minimum width=.8\columnwidth, below=of e5, fill=alizarin!50] (e6) {encoder};
+
+  \draw[->] (e6.north) -- (e5.south);
+  \draw[->] (e5.north) -- (e4.south);
+  \draw[->] (e4.north) -- (e3.south);
+  \draw[->] (e3.north) -- (e2.south);
+  \draw[->] (e2.north) -- (e1.south);
+\end{tikzpicture}
+
+\end{document}

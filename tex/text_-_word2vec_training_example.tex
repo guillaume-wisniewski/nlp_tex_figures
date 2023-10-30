@@ -1,0 +1,42 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+\usetikzlibrary{arrows.meta}
+% French 
+%\newcommand{\initial}{représentation \\ initiale}
+%\newcommand{\final}{représentation \\ contextualisée}
+
+% English
+
+\tikzset{
+    context/.style={
+        text=black,
+        fill=babyblue!50
+    },
+    masked/.style={
+        text=black,
+        fill=babypink!50
+    }
+}
+
+\begin{document}
+
+
+
+  \begin{tikzpicture}
+    \matrix (m1) [matrix of nodes, row sep=0pt, nodes={minimum height=2em},] {
+    le & poète & est & semblable & au & prince & des & nuées & qui & hante & la & tempête & et & se & rit & de & l' & archer \\
+    };
+
+    \matrix (m2) [matrix of nodes, row sep=0pt, nodes={minimum height=2em, anchor=center, text=black!25}, below=of m1.south] {
+    |[context]|le & |[context]|poète & |[masked]|est & |[context]|semblable & |[context]|au & prince & des & nuées & qui & hante & la & tempête & et & se & rit & de & l' & archer \\
+    le & |[context]|poète & |[context]|est & |[masked]| semblable& |[context]|au & |[context]|prince & des & nuées & qui & hante & la & tempête & et & se & rit & de & l' & archer \\
+    le & poète & |[context]|est & |[context]|semblable & |[masked]|au & |[context]|prince & |[context]|des & nuées & qui & hante & la & tempête & et & se & rit & de & l' & archer \\
+    le & poète & est & |[context]|semblable & |[context]|au & |[masked]|prince & |[context]|des & |[context]|nuées & qui & hante & la & tempête & et & se & rit & de & l' & archer \\
+    le & poète & est & semblable & |[context]|au & |[context]|prince & |[masked]|des & |[context]|nuées & |[context]|qui & hante & la & tempête & et & se & rit & de & l' & archer \\
+    };
+
+    \draw[-{Stealth[length=6mm,width=4mm,fill=white]},double distance=4pt] (m1) -- (m2);
+  \end{tikzpicture}
+
+\end{document}
