@@ -2,12 +2,16 @@
 
 \input{tex/common}
 
+\newcommand{\selfattention}{couche d'auto-attention}
+\newcommand{\boxLabel}{couche d'encodage}
+\newcommand{\ff}{couche à propagation avant}
+
 \begin{document}
 
 \begin{tikzpicture}[ampersand replacement=\&]
     \tikzset{node distance = .3cm and 2cm}
     
-    \node[rounded corners, draw=cambridgeblue, fill=cambridgeblue!50, line width=1pt, minimum height=1cm, minimum width=12cm] (ff) {Feed Forward};
+    \node[rounded corners, draw=cambridgeblue, fill=cambridgeblue!50, line width=1pt, minimum height=1cm, minimum width=12cm] (ff) {\ff};
     
     \matrix (M) [matrix of nodes,
     row sep=3em,
@@ -21,7 +25,7 @@
       \hvector{celadon} \\
     };
     
-    \node[rounded corners, draw=cambridgeblue, fill=cambridgeblue!50, line width=1pt, minimum height=1cm, minimum width=12cm, below=of M] (selfattention) {Self-Attention};
+    \node[rounded corners, draw=cambridgeblue, fill=cambridgeblue!50, line width=1pt, minimum height=1cm, minimum width=12cm, below=of M] (selfattention) {\selfattention};
     
     \outgoing{M-1-1.north}{ff.south}
     \outgoing{M-1-2.north}{ff.south}
@@ -40,12 +44,11 @@
                      column sep=1.5em,
                      below=of selfattention,
                      minimum width=2em,]
-    { \hvector{airforceblue} \&
-      \hvector{airforceblue} \&
-      \hvector{airforceblue} \&
-      \hvector{airforceblue} \&
-      \hvector{airforceblue} \\
-      La \& musique \& creuse \& le \& ciel \\
+    { \hvector{celadon} \&
+      \hvector{celadon} \&
+      \hvector{celadon} \&
+      \hvector{celadon} \&
+      \hvector{celadon} \\
     };
 
     \outgoing{input-1-1.north}{selfattention.south}
@@ -73,10 +76,10 @@
 
     \node[draw=alizarin, rounded corners, line width=1pt, fit=(ff) (selfattention), inner xsep=1.5em, inner ysep=1em] (box) {};
 
-    \node[rotate=90, above] at (box.west) {encoder layer};
+    \node[rotate=90, above] at (box.west) {\boxLabel};
     
-    \node [right=of input-1-5] {\makecell{représentation \\ initiale}};
-    \node [right=of output-1-5] {\makecell{représentation \\ contextualisée}};
+    \node [right=of input-1-5] {\makecell{i-ème repréentations \\ intermédiaires}};
+    \node [right=of output-1-5] {\makecell{(i+1)-ème représentations \\ intermédiaires}};
 
 \end{tikzpicture}
 
