@@ -3,12 +3,14 @@
 \input{tex/common}
 
 % French 
-%\newcommand{\initial}{représentation \\ initiale}
-%\newcommand{\final}{représentation \\ contextualisée}
+\newcommand{\initial}{représentation \\ initiale}
+\newcommand{\final}{représentation \\ contextualisée}
+\newcommand{\transformer}{\makecell{Modèle de langue \\ (architecture transformeur)}}
+
 
 % English
-\newcommand{\initial}{initial \\ representation}
-\newcommand{\final}{contextualized \\ representation}
+%\newcommand{\initial}{initial \\ representation}
+%\newcommand{\final}{contextualized \\ representation}
 
 
 \begin{document}
@@ -27,7 +29,7 @@
               La \& musique \& creuse \& le \& ciel \\
             };
 
-    \node [above=of input, minimum height=3em, minimum width=12cm, draw=apricot, rounded corners, line width=2pt, fill=apricot!50] (transformer) {\makecell{Transformer Language Model}};
+    \node [above=of input, minimum height=3em, minimum width=12cm, draw=apricot, rounded corners, line width=2pt, fill=apricot!50] (transformer) {\transformer};
 
     \matrix (output) [matrix of nodes,
                       column sep=1.5em,
