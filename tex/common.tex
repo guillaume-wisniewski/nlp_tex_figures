@@ -64,3 +64,15 @@
   % XXX the values for positionning the node for #4 have been choosen for the NMT example. must be checked
   \draw [decorate,decoration={brace,amplitude=3pt,raise=4pt},yshift=0pt] (\fromX, \fromY) -- (\fromX, \toY) node [midway, anchor=west, xshift=.2cm] {#4};
 }%
+
+\newcommand{\GetXCoord}[2]{%
+  \pgfpointanchor{#1}{#2}%
+  \pgfgetlastxy{\myx}{\dummy}%
+  \myx% Renvoie la coordonnée x
+}
+
+\newcommand{\GetYCoord}[2]{%
+  \pgfpointanchor{#1}{#2}%
+  \pgfgetlastxy{\dummy}{\myy}%
+  \myy% Renvoie la coordonnée x
+}

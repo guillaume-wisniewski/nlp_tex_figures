@@ -1,0 +1,76 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+\usepackage{tikz-dependency}
+%\usepackage{verbatimbox}
+
+\begin{document}
+
+%\begin{myverbbox}{\amrText}
+
+%\end{myverbbox}
+
+
+\begin{tikzpicture}
+
+    \node (sentence) {S'il vous plait... dessine-moi un mouton !};
+
+    \node (tokens) [below=of sentence] {\texttt{S'\textvisiblespace{}il\textvisiblespace{}vous\textvisiblespace{}plait\textvisiblespace{}...\textvisiblespace{}dessine\textvisiblespace{}-moi\textvisiblespace{}un\textvisiblespace{}mouton\textvisiblespace{}!}};
+
+    \node (pos) [below=of tokens] {\small \textsc{SCONJ \quad PRON \quad PRON \quad VERB \quad PUNCT \quad VERB \quad PRON \quad DET \quad NOUN \quad PUNCT}};
+
+    \node (parse) [below=of pos]{
+        \begin{dependency}[theme=brazil]
+            \begin{deptext}
+                S' \& il \& vous \& plait \& ... \& dessine \& -moi \& un \& mouton \&! \\
+            \end{deptext}
+        
+            \depedge{4}{1}{mark}
+            \depedge{4}{2}{expl:subj}
+            \depedge{4}{3}{iobj}
+            \depedge{6}{4}{discourse}
+            \depedge{6}{5}{punct}
+            \depedge{6}{7}{iobj}
+            \depedge{6}{9}{dobj}
+            \depedge{6}{10}{punct}
+            \depedge{9}{8}{det}
+            \deproot[edge unit distance=4ex]{6}{root}
+        \end{dependency}
+    };
+
+    \node (amr) [below=of parse] {
+        \begin{minipage}{6cm}
+            \begin{verbatim}
+(s / say-01
+    :ARG0 (i / it)
+    :ARG1 (d / draw-01 :mode imperative :polite +
+        :ARG0 (y2 / you)
+        :ARG1 (s2 / sheep)
+        :ARG2 (i2 / i)))
+            \end{verbatim}
+        \end{minipage}
+    };
+
+    \draw[line width=1mm, ->] (sentence) -- (tokens);
+    \draw[line width=1mm, ->] (tokens) -- (pos);
+    \draw[line width=1mm, ->] (pos) -- (parse);
+    \draw[line width=1mm, ->] (parse) -- (amr);
+
+    \node (label1) [right=5cm of tokens] {segmentation en mots};
+
+    \GetXCoord{label1}{center}
+    \GetYCoord{pos}{center}
+    \node (label2) at (\myx,\myy) {analyse morpho-syntaxique};
+
+    \GetXCoord{label1}{center}
+    \GetYCoord{parse}{center}
+    \node (label3) at (\myx,\myy) {analyse syntaxique};
+
+    \GetXCoord{label1}{center}
+    \GetYCoord{amr}{center}
+    \node (label4) at (\myx,\myy) {analyse sémantique};
+
+\end{tikzpicture}
+
+\end{document}
