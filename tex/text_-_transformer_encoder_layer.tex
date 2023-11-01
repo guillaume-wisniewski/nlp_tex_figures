@@ -1,0 +1,83 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+\newcommand{\transformer}{couche encodage}
+
+
+\begin{document}
+
+\begin{tikzpicture}[ampersand replacement=\&]
+
+    \node [minimum height=3em, minimum width=12cm, draw=apricot, rounded corners, line width=2pt, fill=apricot!50] (layer1) {\transformer};
+
+    \matrix (repr0) [matrix of nodes,
+    column sep=1.5em,
+    below=2em of layer1,
+    minimum width=2em,]
+            { \tikz{\node[draw=celadon, minimum height=1em, minimum width=4em] (w0) at (0, 0) {}; \draw[celadon, fill=celadon!50] (w0.south west) ++(80/100*4em, 0) rectangle ++(0.1, 1em)} \&
+              \tikz{\node[draw=celadon, minimum height=1em, minimum width=4em] (w0) at (0, 0) {}; \draw[celadon, fill=celadon!50] (w0.south west) ++(17/100*4em, 0) rectangle ++(0.1, 1em)} \&
+              \tikz{\node[draw=celadon, minimum height=1em, minimum width=4em] (w0) at (0, 0) {}; \draw[celadon, fill=celadon!50] (w0.south west) ++(30/100*4em, 0) rectangle ++(0.1, 1em)} \&
+              \tikz{\node[draw=celadon, minimum height=1em, minimum width=4em] (w0) at (0, 0) {}; \draw[celadon, fill=celadon!50] (w0.south west) ++(67/100*4em, 0) rectangle ++(0.1, 1em)} \&
+              \tikz{\node[draw=celadon, minimum height=1em, minimum width=4em] (w0) at (0, 0) {}; \draw[celadon, fill=celadon!50] (w0.south west) ++(59/100*4em, 0) rectangle ++(0.1, 1em)} \\
+            };
+
+
+    \matrix (repr1) [matrix of nodes,
+                      column sep=1.5em,
+                      above=2em of layer1,
+                      minimum width=2em,]
+            { \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \\
+            };
+
+    \node [above=2em of repr1, minimum height=3em, minimum width=12cm, draw=apricot, rounded corners, line width=2pt, fill=apricot!50] (layer2) {\transformer};
+
+    \matrix (repr2) [matrix of nodes,
+    column sep=1.5em,
+    above=2em of layer2,
+    minimum width=2em,]
+            { \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \\
+            };
+
+    \node [above=of repr2, minimum height=3em, minimum width=12cm, draw=apricot, rounded corners, line width=2pt, fill=apricot!50] (layer3) {\transformer};
+
+    \matrix (repr3) [matrix of nodes,
+    column sep=1.5em,
+    above=2em of layer3,
+    minimum width=2em,]
+            { \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \&
+              \hvector{celadon} \\
+            };
+    
+    \foreach \x in {1,...,5} {
+        \outgoing{repr0-1-\x.north}{layer1.south};
+        \outgoing{repr1-1-\x.north}{layer2.south};
+        \outgoing{repr2-1-\x.north}{layer3.south};
+        \incoming{repr1-1-\x.south}{layer1.north};
+        \incoming{repr2-1-\x.south}{layer2.north};
+        \incoming{repr3-1-\x.south}{layer3.north};
+    }
+
+    \node[draw=alizarin, rounded corners, line width=1pt, fit=(layer1) (layer3), inner xsep=3em, inner ysep=1em] (box) {};
+
+    \draw (box.north east) -- (box.south east) node[text=alizarin, pos=.5, above, rotate=90] {\Large transformeur};
+
+    \node [right=8em of repr0] {\makecell{représentations initiales \\ (one-hot)}};
+    \node [right=8em of repr1] {\makecell{représentations \\ intermédiaires}};
+    \node [right=8em of repr2] {\makecell{représentations \\ intermédaires}};
+    \node [right=8em of repr3] {\makecell{représentations \\ contextualisées}};
+
+\end{tikzpicture}
+
+\end{document}
