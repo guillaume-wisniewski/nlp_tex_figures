@@ -13,7 +13,7 @@
         \node[draw=asparagus, fill=asparagus!50, minimum width=.5cm, minimum height=3cm] (scores) at (16cm,0cm) {};
 
         \node at (4cm, 0cm) {$\textrm{ReLU}\left(\mathbf{x} \cdot \mathbf{M}^{\textrm{proj}}\right)$};
-        \node at (12cm, 0cm) {$\textrm{ReLU}\left(\mathbf{x} \cdot \mathbf{M}^{\textrm{score}}\right)$};
+        \node at (12cm, 0cm) {$\mathbf{x} \cdot \mathbf{M}^{\textrm{score}}$};
 
         \draw[airforceblue] (input.north east) -- (hidden.north west);
         \draw[airforceblue] (input.south east) -- (hidden.south west);
