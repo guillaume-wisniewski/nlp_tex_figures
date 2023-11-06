@@ -1,0 +1,28 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+\begin{document}
+
+
+\begin{tikzpicture}
+    \node[draw, rounded corners] (n1) {\begin{minipage}{5cm}{\footnotesize
+De mon départ en voyage \\
+Je ne peux choisir le moment, \\
+Je dois moi-même trouver le chemin \\
+En cette obscurité. \\}
+      \end{minipage}};
+
+    \node[draw, rounded corners] [right=of n1] (n2) {\begin{minipage}{5cm}{\footnotesize
+De [MASK] départ en voyage \\
+Je ne peux choisir [MASK] moment, \\
+Je dois [MASK] trouver le [MASK] \\
+En [MASK] obscurité. \\}
+      \end{minipage}};
+
+    \draw[->, line width=2pt] (n1) -- (n2);
+
+  \end{tikzpicture}
+
+
+\end{document}
