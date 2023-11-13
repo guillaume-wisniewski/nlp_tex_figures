@@ -1,0 +1,33 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+\usepackage{amsmath}
+
+\begin{document}
+
+    \begin{tikzpicture}[ampersand replacement=\&]
+
+        \node (label1) {vecteur colonne~:};
+        \node (label2) [below=2cm of label1.east, anchor=east] {vecteur ligne~:};
+
+        \node (matrix1) [right=2cm of label1,
+                         minimum height=4em,
+                         minimum width=1em,
+                         draw=black,
+                         ] {};
+        \node (matrix2) [right=2cm of label2,
+                         minimum height=1em,
+                         minimum width=4em,
+                         draw=black,
+                         ] {};
+
+        \draw [fill=gray] (matrix2.south west) ++(80/100*4em, 0) rectangle ++(0.1, 1em);
+        \draw [fill=gray] (matrix1.south west) ++(0, 40/100*1em) rectangle ++(1em, 0.1);
+        \draw[->] (label1.east) ++(.5cm, 0) -- ([xshift=-.5cm]matrix1.west);
+        \draw[->] (label2.east) ++(.5cm, 0) -- ([xshift=-.5cm]matrix2.west);
+
+
+    \end{tikzpicture}
+
+\end{document}

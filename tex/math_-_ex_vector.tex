@@ -1,0 +1,23 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+\usepackage{amsmath}
+
+\begin{document}
+
+    \begin{tikzpicture}[ampersand replacement=\&]
+
+        \node (label1) {vecteur colonne~: $\begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}$};
+
+        \node (label2) [below=2cm of label1.east, anchor=east] {vecteur ligne~: $\begin{pmatrix} 1 & 2 & 3 & 4 \end{pmatrix}$};
+
+        \node (matrix1) [right=2cm of label1] {\hvector{gray}};
+        \node (matrix2) [right=2cm of label2] {\vvector{gray}};
+
+        \draw[->] (label1.east) ++(.5cm, 0) -- ([xshift=-.5cm]matrix1.west);
+        \draw[->] (label2.east) ++(.5cm, 0) -- ([xshift=-.5cm]matrix2.west);
+
+    \end{tikzpicture}
+
+\end{document}
