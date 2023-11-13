@@ -13,6 +13,7 @@
   \begin{tikzpicture}[ampersand replacement=\&]
     \matrix (M) [matrix of nodes,
                  row sep=1em,
+                 every odd row/.style = {nodes={text=gray!50}},
                  column sep=.5em,]
     {
                 \&           \&    \& ?  \&    \& l' \&    \& Rodrigue \& \& cru \\
@@ -20,12 +21,12 @@
                 \&           \& ,  \&    \& \textcolor{amethyst}{Chimène} \& \& qui \& \& dit \& \& eût \\
     };
 
-    \foreach \x in {4,6,8} {
-      \draw[->] (M-1-\x) -- (M-2-\x);
+    \foreach \x in {4,6,8,10} {
+      \draw[->, color=gray!50] (M-1-\x) -- (M-2-\x);
     }
 
-    \foreach \x in {3,5,7,9} {
-      \draw[->] (M-3-\x) -- (M-2-\x);
+    \foreach \x in {3,5,7,9,11} {
+      \draw[->, color=gray!50] (M-3-\x) -- (M-2-\x);
     }
 
     \draw[->, amethyst] (M-3-5) -- (M-2-5);
