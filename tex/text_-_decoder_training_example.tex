@@ -1,0 +1,32 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+\usepackage{booktabs}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+\node (n1) {la musique creuse le ciel.};
+
+\node (n2) [below=3em of n1] {
+\begin{tabular}{lll}
+    \toprule
+    \multicolumn{1}{c}{préfixe} & \phantom{abcd} & \multicolumn{1}{c}{mot à prédire} \\
+    \cline{1-1} \cline{3-3} \\
+    \texttt{<bos>} & & la \\
+    \texttt{<bos>} la & & musique \\
+    \texttt{<bos>} la musique & & creuse \\
+    \texttt{<bos>} la musique creuse & & le \\
+    \texttt{<bos>} la musique creuse le & & ciel \\
+    \texttt{<bos>} la musique creuse le ciel & & . \\
+    \texttt{<bos>} la musique creuse le ciel . & & \texttt{<eos>} \\
+    \bottomrule
+\end{tabular}
+};
+
+\draw[->, line width=1pt] (n1) -- (n2);
+
+\end{tikzpicture}
+
+\end{document}
