@@ -18,16 +18,24 @@
 
     \node (tokens) [below=of sentence] {\texttt{S'\textvisiblespace{}il\textvisiblespace{}vous\textvisiblespace{}plait\textvisiblespace{}...\textvisiblespace{}dessine\textvisiblespace{}-moi\textvisiblespace{}un\textvisiblespace{}mouton\textvisiblespace{}!}};
 
-    \node (pos) [below=of tokens] {\small \textsc{SCONJ \quad PRON \quad PRON \quad VERB \quad PUNCT \quad VERB \quad PRON \quad DET \quad NOUN \quad PUNCT}};
+    \node (pos) [below=of tokens] {
+        \begin{dependency}[theme=brazil]
+            \begin{deptext}
+            S' \& il \& vous \& plait \& ... \& dessine \& -moi \& un \& mouton \&! \\
+            SCONJ \& PRON \& PRON \& VERB \& PUNCT \& VERB \& PRON \& DET \& NOUN \& PUNCT \\
+            \end{deptext}
+        \end{dependency}
+    };
 
     \node (parse) [below=of pos]{
         \begin{dependency}[theme=brazil]
             \begin{deptext}
+                SCONJ \& PRON \& PRON \& VERB \& PUNCT \& VERB \& PRON \& DET \& NOUN \& PUNCT \\
                 S' \& il \& vous \& plait \& ... \& dessine \& -moi \& un \& mouton \&! \\
             \end{deptext}
         
             \depedge{4}{1}{mark}
-            \depedge{4}{2}{expl:subj}
+            \depedge{4}{2}{subj}    % should be expl:subj but too difficult to explain
             \depedge{4}{3}{iobj}
             \depedge{6}{4}{discourse}
             \depedge{6}{5}{punct}
