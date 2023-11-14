@@ -1,0 +1,28 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+\begin{document}
+
+    \begin{tikzpicture}
+
+        \node[draw=black, fill=gray!50, minimum width=.5cm, minimum height=6cm] (input) at (0cm,0cm) {};
+
+        \node[draw=black, fill=gray!25, minimum width=.5cm, minimum height=3cm] (scores) at (8cm,0cm) {};
+
+        \draw[black] (input.north east) -- (scores.north west);
+        \draw[black] (input.south east) -- (scores.south west);
+
+        \node at (4cm, 0cm) {$\mathbf{x} \cdot \mathbf{M}$};
+
+        \node at (8cm, -4cm) {\makecell{vecteur $\mathbf{y}$ \\ (dimension $1 \times k$)}};
+        \node at (4cm, -4cm) {\makecell{matrice $\mathbf{M}$ \\ (dimension $d \times k$)}};
+        \node at (0cm, -4cm) {\makecell{vecteur $\mathbf{x}$ \\ (dimension $1 \times d$)}};
+
+        \node [left=4cm of input] (label) {$\mathbf{y} = \mathbf{x} \cdot \mathbf{M}$};
+
+        \draw[->] (label.east) ++(.5cm, 0) -- ([xshift=-1cm]input.west);
+
+    \end{tikzpicture}
+
+\end{document}
