@@ -2,39 +2,42 @@
 
 \input{tex/common}
 
+%\newcommand{\plotColor}{airforceblue}
+\newcommand{\plotColor}{gray}
+
 \begin{document}
 
 
     \begin{tikzpicture}
         \pgfmathsetmacro{\onehotsize}{2}      % size of the one hot vector
 
-        \node[draw=airforceblue, minimum width=.5cm, minimum height=\onehotsize{}cm] (w1) at (0cm,0cm) {};
+        \node[draw=\plotColor, minimum width=.5cm, minimum height=\onehotsize{}cm] (w1) at (0cm,0cm) {};
         \node[left=of w1] {ailes};
         \pgfmathsetmacro{\pos}{55} % \pos en pourcentage
-        \draw[airforceblue, fill=airforceblue!50] (w1.south west) ++(0, \pos/100*\onehotsize) rectangle ++(0.5, 0.1);
+        \draw[\plotColor, fill=\plotColor!50] (w1.south west) ++(0, \pos/100*\onehotsize) rectangle ++(0.5, 0.1);
 
 
-        \node[draw=airforceblue, minimum width=.5cm, minimum height=\onehotsize{}cm, below=of w1] (w2) {};
+        \node[draw=\plotColor, minimum width=.5cm, minimum height=\onehotsize{}cm, below=of w1] (w2) {};
         \node[left=of w2] {de};
         \pgfmathsetmacro{\pos}{70} % \pos en pourcentage
-        \draw[airforceblue, fill=airforceblue!50] (w2.south west) ++(0, \pos/100*\onehotsize) rectangle ++(0.5, 0.1);
+        \draw[\plotColor, fill=\plotColor!50] (w2.south west) ++(0, \pos/100*\onehotsize) rectangle ++(0.5, 0.1);
 
         \node[draw=white, minimum width=.5cm, minimum height=\onehotsize{}cm, below=of w2] (w3) {};
         \node[left=of w3] {\texttt{[MASK]}};
 
-        \node[draw=airforceblue, minimum width=.5cm, minimum height=\onehotsize{}cm, below=of w3] (w4) {};
+        \node[draw=\plotColor, minimum width=.5cm, minimum height=\onehotsize{}cm, below=of w3] (w4) {};
         \node[left=of w4] {l'};
         \pgfmathsetmacro{\pos}{10} % \pos en pourcentage
-        \draw[airforceblue, fill=airforceblue!50] (w4.south west) ++(0, \pos/100*\onehotsize) rectangle ++(0.5, 0.1);
+        \draw[\plotColor, fill=\plotColor!50] (w4.south west) ++(0, \pos/100*\onehotsize) rectangle ++(0.5, 0.1);
 
-        \node[draw=airforceblue, minimum width=.5cm, minimum height=\onehotsize{}cm, below=of w4] (w5) {};
+        \node[draw=\plotColor, minimum width=.5cm, minimum height=\onehotsize{}cm, below=of w4] (w5) {};
         \node[left=of w5] {empêche};
         \pgfmathsetmacro{\pos}{30} % \pos en pourcentage
-        \draw[airforceblue, fill=airforceblue!50] (w5.south west) ++(0, \pos/100*\onehotsize) rectangle ++(0.5, 0.1);
+        \draw[\plotColor, fill=\plotColor!50] (w5.south west) ++(0, \pos/100*\onehotsize) rectangle ++(0.5, 0.1);
 
-        \node[draw=airforceblue, fill=airforceblue!50, right=of w3, xshift=4cm, minimum height=3cm, minimum width=.5cm] (hidden) {};
+        \node[draw=\plotColor, fill=\plotColor!50, right=of w3, xshift=4cm, minimum height=3cm, minimum width=.5cm] (hidden) {};
 
-        \node[draw=airforceblue, fill=airforceblue!50, right=of hidden, xshift=4cm, minimum height=6cm, minimum width=.5cm] (score) {};
+        \node[draw=\plotColor, fill=\plotColor!50, right=of hidden, xshift=4cm, minimum height=6cm, minimum width=.5cm] (score) {};
 
         \draw (w1.north east) -- (hidden.north west);
         \draw (w1.south east) -- (hidden.south west);
@@ -53,6 +56,10 @@
 
         \draw[draw=white] (hidden) -- (score) node[baseline=mid,pos=.5] {$\textbf{M}^{\textrm{classif}}$};
 
+        \node [right=4cm of score] (pred) {géant};
+
+        \draw[->] (score) ++(.5cm, 0) -- (pred) node [pos=.5, below] {plus grand score} node [pos=.5, above] {mot avec le};
+
         \node[right=of w1, xshift=-1cm] {$\textbf{M}^{\textrm{proj}}$};
         \node[right=of w2, xshift=-1cm] {$\textbf{M}^{\textrm{proj}}$};
         \node[right=of w4, xshift=-1cm] {$\textbf{M}^{\textrm{proj}}$};
@@ -62,8 +69,9 @@
 
         \draw node [below=of w5] (label1) {\makecell{représentation \textit{one-hot} \\ ($V$~dimensions)}};
 
-        \node (C) at (label1 -| hidden) {\makecell{représentation cachée \\ 300~dimensions}};
+        \node (C) at (label1 -| hidden) {\makecell{représentation cachée \\ (300~dimensions)}};
 
-        \node (C) at (label1 -| score) {\makecell{vecteur de scores \\ $V$~dimensions}};
+        \node (C) at (label1 -| score) {\makecell{vecteur de scores \\ ($V$~dimensions)}};
+
     \end{tikzpicture}
 \end{document}
