@@ -2,12 +2,8 @@
 
 \input{tex/common}
 \usetikzlibrary{arrows.meta}
-% French 
-%\newcommand{\initial}{représentation \\ initiale}
-%\newcommand{\final}{représentation \\ contextualisée}
 
-% English
-
+% colored version
 \tikzset{
     context/.style={
         text=black,
@@ -15,18 +11,30 @@
     },
     masked/.style={
         text=black,
+%        font=\bfseries,
         fill=babypink!50
     }
 }
 
+% black and white
+\tikzset{
+    context/.style={
+        text=black,
+        fill=gray!25
+    },
+    masked/.style={
+        text=black,
+        fill=gray!50
+    }
+}
 \begin{document}
-
-
 
   \begin{tikzpicture}
     \matrix (m1) [matrix of nodes, row sep=0pt, nodes={minimum height=2em},] {
     le & poète & est & semblable & au & prince & des & nuées & qui & hante & la & tempête & et & se & rit & de & l' & archer \\
     };
+
+
 
     \matrix (m2) [matrix of nodes, row sep=0pt, nodes={minimum height=2em, anchor=center, text=black!25}, below=of m1.south] {
     |[context]|le & |[context]|poète & |[masked]|est & |[context]|semblable & |[context]|au & prince & des & nuées & qui & hante & la & tempête & et & se & rit & de & l' & archer \\
