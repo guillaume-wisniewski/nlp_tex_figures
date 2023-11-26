@@ -1,0 +1,85 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{tex/common}
+
+\usetikzlibrary{calc}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \node (img0) {\includegraphics[width=1cm, height=1cm]{tex/patch_0.png}};
+    \node [right=.05cm of img0] (img1) {\includegraphics[width=1cm, height=1cm]{tex/patch_1.png}};
+    \node [right=.05cm of img1] (img2) {\includegraphics[width=1cm, height=1cm]{tex/patch_2.png}};
+    
+    \node [below=.05cm of img0] (img3) {\includegraphics[width=1cm, height=1cm]{tex/patch_3.png}};
+    \node [below=.05cm of img1] (img4) {\includegraphics[width=1cm, height=1cm]{tex/patch_4.png}};
+    \node [below=.05cm of img2] (img5) {\includegraphics[width=1cm, height=1cm]{tex/patch_5.png}};
+
+    \node [below=.05cm of img3] (img6) {\includegraphics[width=1cm, height=1cm]{tex/patch_6.png}};
+    \node [below=.05cm of img4] (img7) {\includegraphics[width=1cm, height=1cm]{tex/patch_7.png}};
+    \node [below=.05cm of img5] (img8) {\includegraphics[width=1cm, height=1cm]{tex/patch_8.png}};
+
+    \node [right=2cm of img5.east] (patch0) {\includegraphics[width=1cm, height=1cm]{tex/patch_0.png}};
+
+    \node [right=.5cm of patch0.east] (patch1) {\includegraphics[width=1cm, height=1cm]{tex/patch_1.png}};
+    \node [right=.5cm of patch1.east] (patch2) {\includegraphics[width=1cm, height=1cm]{tex/patch_2.png}};
+    \node [right=.5cm of patch2.east] (patch3) {\includegraphics[width=1cm, height=1cm]{tex/patch_3.png}};
+    \node [right=.5cm of patch3.east] (patch4) {\includegraphics[width=1cm, height=1cm]{tex/patch_4.png}};
+    \node [right=.5cm of patch4.east] (patch5) {\includegraphics[width=1cm, height=1cm]{tex/patch_5.png}};
+    \node [right=.5cm of patch5.east] (patch6) {\includegraphics[width=1cm, height=1cm]{tex/patch_6.png}};
+    \node [right=.5cm of patch6.east] (patch7) {\includegraphics[width=1cm, height=1cm]{tex/patch_7.png}};
+    \node [right=.5cm of patch7.east] (patch8) {\includegraphics[width=1cm, height=1cm]{tex/patch_8.png}};
+
+    \node[inner xsep=1em, inner ysep=.5em, draw=alizarin, rounded corners, fit=(patch0) (patch8), yshift=2cm, line width=2pt, ] (initial) {\Large Réseau à propagation avant};
+
+    \node[inner xsep=1em, inner ysep=.5em, draw=alizarin, rounded corners, fit=(patch0) (patch8), yshift=5cm, line width=2pt, ] (transformer) {\Large Transformeur};
+
+    \outgoing{patch0.north}{initial.south};
+    \outgoing{patch2.north}{initial.south};
+    \outgoing{patch3.north}{initial.south};
+    \outgoing{patch4.north}{initial.south};
+    \outgoing{patch5.north}{initial.south};
+    \outgoing{patch6.north}{initial.south};
+    \outgoing{patch7.north}{initial.south};
+    \outgoing{patch8.north}{initial.south};
+
+    %\foreach \i in {0, ..., 8} {
+    %    \path (patch\i.north); \pgfgetlastxy{\XCoord}{\dummy};
+    %    \path (initial.north); \pgfgetlastxy{\dummy}{\YaCoord};
+    %    \path (transformer.south); \pgfgetlastxy{\dummy}{\YbCoord};
+    %    \draw[->, line width=1pt] (\XCoord, \YaCoord) -- (\XCoord, \YbCoord);
+    %}
+
+    \foreach \i in {0, ..., 8} {
+        \path (patch\i.north); \pgfgetlastxy{\XCoord}{\dummy};
+        \path (initial.north); \pgfgetlastxy{\dummy}{\YbCoord};
+
+        \node at (\XCoord, \YbCoord + .7cm) (interm\i) {\hvector{airforceblue}};
+        
+        \incoming{interm\i.south}{initial.north};
+        \outgoing{interm\i.north}{transformer.south};
+
+    }
+
+
+    \foreach \i in {0, ..., 8} {
+        \path (patch\i.north); \pgfgetlastxy{\XCoord}{\dummy};
+        \path (transformer.north); \pgfgetlastxy{\dummy}{\YbCoord};
+
+        \node at (\XCoord, \YbCoord + 1cm) (output\i) {\hvector{airforceblue}};
+        
+        \incoming{output\i.south}{transformer.north};
+    }
+
+    \draw[->, line width=1pt] (img5) -- (patch0);
+
+
+    \draw node[right=3cm of patch8] (label1) {patchs};
+    \draw node at (label1 |- interm8) (label2) {\makecell{représentations \\ initiales}};
+    \draw node at (label2 |- output8) {\makecell{représentations \\ finales}};
+
+
+\end{tikzpicture}
+
+\end{document}
