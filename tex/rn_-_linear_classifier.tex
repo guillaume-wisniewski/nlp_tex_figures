@@ -2,6 +2,15 @@
 
 \input{tex/common}
 
+% Fr labels
+%\newcommand{\score}{vecteur de scores}
+%\newcommand{\param}{matrice de paramètres}
+%
+% En labels
+\newcommand{\score}{scores vector}
+\newcommand{\param}{parameters matrix}
+
+
 \begin{document}
 
     \begin{tikzpicture}
@@ -13,11 +22,11 @@
         \draw[airforceblue] (input.north east) -- (scores.north west);
         \draw[airforceblue] (input.south east) -- (scores.south west);
 
-        \node at (4cm, 0cm) {$\mathbf{x} \cdot \mathbf{M}$};
+        \node at (4cm, 0cm) {$\mathbf{M} \cdot \mathbf{x}$};
 
-        \node at (8cm, -4cm) {\makecell{vecteur de scores \\ (dimension $k$)}};
-        \node at (4cm, -4cm) {\makecell{matrice de paramètres \\ (dimension $k \times d$)}};
-        \node at (0cm, -4cm) {\makecell{observation $\mathbf{x}$ \\ (dimension $d$)}};
+        \node at (8cm, -4cm) {\makecell{\score \\ (dimension: $k \times 1$)}};
+        \node at (4cm, -4cm) {\makecell{\param \\ (dimension: $k \times d$)}};
+        \node at (0cm, -4cm) {\makecell{observation $\mathbf{x}$ \\ (dimension: $d \times 1$)}};
 
     \end{tikzpicture}
 

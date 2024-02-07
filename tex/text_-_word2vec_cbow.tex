@@ -2,8 +2,17 @@
 
 \input{tex/common}
 
-%\newcommand{\plotColor}{airforceblue}
-\newcommand{\plotColor}{gray}
+\newcommand{\plotColor}{airforceblue}
+%\newcommand{\plotColor}{gray}
+
+%\newcommand{\repr}{représentation \textit{one-hot}}
+%\newcommand{\hidden}{représentation cachée}
+%\newcommand{\score}{vecteur de scores}
+
+\newcommand{\repr}{\textit{one-hot} representation}
+\newcommand{\hidden}{hidden representation}
+\newcommand{\score}{scores vector}
+
 
 \begin{document}
 
@@ -58,7 +67,9 @@
 
         \node [right=4cm of score] (pred) {géant};
 
-        \draw[->] (score) ++(.5cm, 0) -- (pred) node [pos=.5, below] {plus grand score} node [pos=.5, above] {mot avec le};
+        %\draw[->] (score) ++(.5cm, 0) -- (pred) node [pos=.5, below] {plus grand score} node [pos=.5, above] {mot avec le};
+        \draw[->] (score) ++(.5cm, 0) -- (pred) node [pos=.5, below] {highest score} node [pos=.5, above] {word with the};
+
 
         \node[right=of w1, xshift=-1cm] {$\textbf{M}^{\textrm{proj}}$};
         \node[right=of w2, xshift=-1cm] {$\textbf{M}^{\textrm{proj}}$};
@@ -67,11 +78,11 @@
 
         \draw node [above=0cm of hidden] {$\oplus$};
 
-        \draw node [below=of w5] (label1) {\makecell{représentation \textit{one-hot} \\ ($V$~dimensions)}};
+        \draw node [below=of w5] (label1) {\makecell{\repr \\ (dimension: $V$)}};
 
-        \node (C) at (label1 -| hidden) {\makecell{représentation cachée \\ (300~dimensions)}};
+        \node (C) at (label1 -| hidden) {\makecell{\hidden \\ (dimension: 300)}};
 
-        \node (C) at (label1 -| score) {\makecell{vecteur de scores \\ ($V$~dimensions)}};
+        \node (C) at (label1 -| score) {\makecell{\score \\ (dimensions: $V$)}};
 
     \end{tikzpicture}
 \end{document}

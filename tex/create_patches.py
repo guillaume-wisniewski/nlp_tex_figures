@@ -3,6 +3,7 @@ from patchify import patchify
 from PIL import Image
 
 image = Image.open("output.png")
+#image = Image.open("Tour_Eiffel_005.jpg")
 image = np.asarray(image)
 print(image.shape)
 patches = patchify(image, (512, 512, 1), step=512)

@@ -8,14 +8,14 @@
 
     \node (waveform) {\includegraphics[width=14cm]{img/waveform.png}};
 
-    \node [above=of waveform, minimum width=15cm, draw=alizarin, rounded corners, line width=2pt, fill=alizarin!50] (transformer) {\makecell{\Large Neural Network \\ (e.g. \texttt{wav2vec2})}};
+    \node [above=of waveform, minimum width=15cm, draw=amethyst, rounded corners, line width=2pt, fill=amethyst!50] (transformer) {\makecell{\Large Neural Network \\ (e.g. \texttt{wav2vec2})}};
 
     \foreach \x in {-6, -4, ..., 4, 6} {
         \draw[->, line width=2pt] ([shift={(\x, 0)}]waveform.north) -- ([shift={(\x, 0)}] transformer.south);
     }
     
     \foreach \x in {-6, -4, ..., 4, 6} {
-        \node [above=of transformer, shift={(\x, 0)}] (n\x) {\vvector{airforceblue}};
+        \node [above=of transformer, shift={(\x, 0)}] (n\x) {\vvector{bostonuniversityred}};
     }
 
     \foreach \x in {-6, -4, ..., 4, 6} {

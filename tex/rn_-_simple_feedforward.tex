@@ -2,6 +2,15 @@
 
 \input{tex/common}
 
+%\newcommand{\param}{matrice de paramètres}
+%\newcommand{\hidden}{représentation cachée}
+%\newcommand{\scores}{vecteur de scores}
+
+\newcommand{\param}{parameter matrice}
+\newcommand{\hidden}{hidden representation}
+\newcommand{\scores}{scores vector}
+
+
 \begin{document}
 
     \begin{tikzpicture}
@@ -12,19 +21,19 @@
 
         \node[draw=asparagus, fill=asparagus!50, minimum width=.5cm, minimum height=3cm] (scores) at (16cm,0cm) {};
 
-        \node at (4cm, 0cm) {$\textrm{ReLU}\left(\mathbf{x} \cdot \mathbf{M}^{\textrm{proj}}\right)$};
-        \node at (12cm, 0cm) {$\mathbf{x} \cdot \mathbf{M}^{\textrm{score}}$};
+        \node at (4cm, 0cm) {$\textrm{ReLU}\left(\mathbf{M}^{\textrm{proj}} \cdot \mathbf{x}\right)$};
+        \node at (12cm, 0cm) {$\mathbf{M}^{\textrm{score}} \cdot \mathbf{h}$};
 
         \draw[airforceblue] (input.north east) -- (hidden.north west);
         \draw[airforceblue] (input.south east) -- (hidden.south west);
         \draw[airforceblue] (hidden.north east) -- (scores.north west);
         \draw[airforceblue] (hidden.south east) -- (scores.south west);
 
-        \node at (16cm, -5cm) {\makecell{vecteur de scores \\ (dimension $k$)}};
-        \node at (12cm, -5cm) {\makecell{matrice de paramètres \\ (dimension $h \times k$)}};
-        \node at ( 8cm, -5cm) {\makecell{représentation cachée $\mathbf{h}$ \\ (dimension $h$)}};
-        \node at ( 4cm, -5cm) {\makecell{matrice de paramètres \\ (dimension $n \times h$)}};
-        \node at ( 0cm, -5cm) {\makecell{observation $\mathbf{x}$ \\ (dimension $n$)}};
+        \node at (16cm, -5cm) {\makecell{\scores \\ (dimension: $k \times 1$)}};
+        \node at (12cm, -5cm) {\makecell{\param \\ (dimension: $k \times h$)}};
+        \node at ( 8cm, -5cm) {\makecell{\hidden $\mathbf{h}$ \\ (dimension: $h \times 1$)}};
+        \node at ( 4cm, -5cm) {\makecell{\param \\ (dimension: $h \times n$)}};
+        \node at ( 0cm, -5cm) {\makecell{observation $\mathbf{x}$ \\ (dimension: $n \times 1$)}};
 
     \end{tikzpicture}
 
