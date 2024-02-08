@@ -2,9 +2,19 @@
 
 \input{tex/common}
 
-\newcommand{\selfattention}{couche d'auto-attention}
-\newcommand{\boxLabel}{couche d'encodage}
-\newcommand{\ff}{couche à propagation avant}
+%\newcommand{\selfattention}{couche d'auto-attention}
+%\newcommand{\boxLabel}{couche d'encodage}
+%\newcommand{\ff}{couche à propagation avant}
+%\newcommand{\irepr}{\makecell{i-ème représentations \\ intermédiaires}}
+%\newcommand{\irepr}{\makecell{(i+1)-ème représentations \\ intermédiaires}}
+
+
+\newcommand{\selfattention}{self-attention layer}
+\newcommand{\boxLabel}{encoder layer}
+\newcommand{\ff}{feed-forward layer}
+\newcommand{\irepr}{\makecell{$i$-th intermediate \\ representation}}
+\newcommand{\iirepr}{\makecell{$(i+1)$-th intermediate \\ representation}}
+
 
 \begin{document}
 
@@ -78,8 +88,8 @@
 
     \node[rotate=90, above] at (box.west) {\boxLabel};
     
-    \node [right=of input-1-5] {\makecell{i-ème représentations \\ intermédiaires}};
-    \node [right=of output-1-5] {\makecell{(i+1)-ème représentations \\ intermédiaires}};
+    \node [right=of input-1-5] {\irepr};
+    \node [right=of output-1-5] {\iirepr};
 
 \end{tikzpicture}
 
