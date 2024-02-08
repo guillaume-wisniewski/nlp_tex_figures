@@ -2,6 +2,19 @@
 
 \input{tex/common}
 
+% \newcommand{\first}{\makecell{1$^{\textrm{ère}}$ représentation\\ cachée}}
+% \newcommand{\second}{\makecell{2$^{\textrm{ème}}$ représentation\\ cachée}}
+% \newcommand{\third}{\makecell{3$^{\textrm{ème}}$ représentation\\ cachée}}
+% \newcommand{\scores}{\makecell{vecteur de scores}}
+% \newcommand{\obser}{\makecell{observation $\mathbf{x}$}}
+
+\newcommand{\first}{\makecell{1$^{\textrm{st}}$ hidden\\ representation}}
+\newcommand{\second}{\makecell{2$^{\textrm{nd}}$ hidden\\ representation}}
+\newcommand{\third}{\makecell{3$^{\textrm{rd}}$ hidden \\ representation}}
+\newcommand{\scores}{\makecell{score vector}}
+\newcommand{\obser}{\makecell{observation $\mathbf{x}$}}
+
+
 \begin{document}
 
     \begin{tikzpicture}
@@ -16,10 +29,10 @@
 
         \node[draw=asparagus, fill=asparagus!50, minimum width=.5cm, minimum height=2cm] (scores) at (\xdist * 4, 0cm) {};
 
-        \node at (\xdist * 0.5, 0cm) {$\textrm{ReLU}\left(\mathbf{x} \cdot \mathbf{M}^{\textrm{proj, 1}}\right)$};
-        \node at (\xdist * 1.5, 0cm) {$\textrm{ReLU}\left(\mathbf{x} \cdot \mathbf{M}^{\textrm{proj, 2}}\right)$};
-        \node at (\xdist * 2.5, 0cm) {$\textrm{ReLU}\left(\mathbf{x} \cdot \mathbf{M}^{\textrm{proj, 3}}\right)$};
-        \node at (\xdist * 3.5, 0cm) {$\mathbf{x} \cdot \mathbf{M}^{\textrm{score}}$};
+        \node at (\xdist * 0.5, 0cm) {$\textrm{ReLU}\left(\mathbf{M}^{\textrm{proj, 1}} \cdot \mathbf{x}\right)$};
+        \node at (\xdist * 1.5, 0cm) {$\textrm{ReLU}\left(\mathbf{M}^{\textrm{proj, 2}} \cdot \mathbf{h}_1 \right)$};
+        \node at (\xdist * 2.5, 0cm) {$\textrm{ReLU}\left(\mathbf{M}^{\textrm{proj, 3}} \cdot \mathbf{h}_2\right)$};
+        \node at (\xdist * 3.5, 0cm) {$\mathbf{M}^{\textrm{score}} \cdot \mathbf{x}$};
 
         \draw[airforceblue] (input.north east) -- (hidden1.north west);
         \draw[airforceblue] (input.south east) -- (hidden1.south west);
@@ -33,12 +46,12 @@
         \draw[airforceblue] (hidden3.north east) -- (scores.north west);
         \draw[airforceblue] (hidden3.south east) -- (scores.south west);
 
-        \node at (\xdist,     -4cm) {\makecell{1$^{\textrm{ère}}$ représentation\\ cachée}};
-        \node at (\xdist * 2, -4cm) {\makecell{2$^{\textrm{ème}}$ représentation\\ cachée}};
-        \node at (\xdist * 3, -4cm) {\makecell{3$^{\textrm{ème}}$ représentation\\ cachée}};
+        \node at (\xdist,     -4cm) {\first};
+        \node at (\xdist * 2, -4cm) {\second};
+        \node at (\xdist * 3, -4cm) {\third};
 
-        \node at (\xdist * 4, -4cm) {\makecell{vecteur de scores}};
-        \node at ( 0cm, -4cm) {\makecell{observation $\mathbf{x}$}};
+        \node at (\xdist * 4, -4cm) {\scores};
+        \node at ( 0cm, -4cm) {\obser};
 
     \end{tikzpicture}
 
