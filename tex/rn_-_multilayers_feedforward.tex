@@ -32,7 +32,7 @@
         \node at (\xdist * 0.5, 0cm) {$\textrm{ReLU}\left(\mathbf{M}^{\textrm{proj, 1}} \cdot \mathbf{x}\right)$};
         \node at (\xdist * 1.5, 0cm) {$\textrm{ReLU}\left(\mathbf{M}^{\textrm{proj, 2}} \cdot \mathbf{h}_1 \right)$};
         \node at (\xdist * 2.5, 0cm) {$\textrm{ReLU}\left(\mathbf{M}^{\textrm{proj, 3}} \cdot \mathbf{h}_2\right)$};
-        \node at (\xdist * 3.5, 0cm) {$\mathbf{M}^{\textrm{score}} \cdot \mathbf{x}$};
+        \node at (\xdist * 3.5, 0cm) {$\mathbf{M}^{\textrm{score}} \cdot \mathbf{h}_2$};
 
         \draw[airforceblue] (input.north east) -- (hidden1.north west);
         \draw[airforceblue] (input.south east) -- (hidden1.south west);
